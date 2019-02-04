@@ -28,7 +28,7 @@ public class JavaTypesPrimitifs {
 		// Byte 8 bits ==> Byte
 		byte b1 = 127, b2 = -128, b3 = 0x7F, b4 = 0x7_F, b5 = 0b01111111, b6 = Byte.MAX_VALUE;
 		// Entier 16 bits ==> Short
-		short e1 = 3267, e2 = -32768, e3 = 0x7FFF, e4 = Short.MAX_VALUE;
+		short e1 = 32767, e2 = -32768, e3 = 0x7FFF, e4 = Short.MAX_VALUE;
 		// Entier 32 bits ==>Integer
 		int i1 = 78, i2 = 0x7FFFFFFF, i3 = 0xFFFFFFFF, // i3==-1;
 				i4 = Integer.MAX_VALUE;
