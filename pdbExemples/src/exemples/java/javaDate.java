@@ -20,7 +20,7 @@ public class javaDate {
 			System.out.println("Date non formatée : " + d2);
 			System.out.println("Date formatée : " + sdf.format(d2));
 		} catch (ParseException e) {
-			System.out.println("String uneDate: " + uneDate + " erronée");
+			System.err.println("String uneDate: " + uneDate + " erronée");
 		}
 		// Création d'une date mal formée
 		String uneBadDate = "brol";
@@ -29,8 +29,8 @@ public class javaDate {
 			d3 = sdf.parse(uneBadDate);
 			System.out.println("Date d3 : " + sdf.format(d3));
 		} catch (ParseException e) {
-			System.out.println(e.getMessage());
-			System.out.println("String uneBadDate: " + uneBadDate + " erronée");
+			System.err.println(e.getMessage());
+			System.err.println("String uneBadDate: " + uneBadDate + " erronée");
 		}
 	}
 

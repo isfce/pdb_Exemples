@@ -10,42 +10,12 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
-import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.LongStream;
-import java.util.stream.Stream;
-
-import javax.swing.JOptionPane;
 
 public class J8 {
-	//Optional
-	public void execute1() {
-
-	    Optional<String> maybeString = Optional.empty();//Optional.of("foo");
-
-	    String newString = maybeString.map(this::runIfExist).orElse(runIfEmpty());
-
-	    System.out.println(newString);
-
-	}
-
-	private String runIfExist(String str) {
-
-	    System.out.println("only run if optional is filled ");
-
-	    return str;
-
-	}
-
-	private String runIfEmpty() {
-
-	    System.out.println("only run if empty");
-
-	    return "empty";
-
-	}
-	
 	public static void main(String[] s) {
+		System.out.println("============== Auto-Boxing et UnBoxing ===============");
 		// *****************************************************
 		// Exemple d'auto-boxing
 		int i;
@@ -56,9 +26,9 @@ public class J8 {
 		oi = new Integer(5);
 		i = oi.intValue();
 		// *****************************************************
-
 		// Exemple d'une collection de type vecteur et utilisation de
 		// l'interface List
+		System.out.println("==========Différentes façons de trier une liste ===============");
 		List<Integer> v = new ArrayList<>();
 		v.add(4);
 		v.add(2);
@@ -69,11 +39,19 @@ public class J8 {
 		 * o1.intValue()-o2.intValue(); } });
 		 */
 		// Exemple d'une lambda expression pour trier un vecteur
+		// Sol1 avant j8
+		Collections.sort(v);
+		// Sol2 en précisant un comparateur
 		Collections.sort(v, (Integer o1, Integer o2) -> o1.intValue() - o2.intValue());
+		// Sol3 réutilise un comparateur de la classe Integer
+		Collections.sort(v, Integer::compare);
+		// Sol4 Directement sur l'objet
+		v.sort(Integer::compare);
 
 		// Ecriture du vecteur
 		System.out.println(v);
 
+		System.out.println("============== LocalDate et LocalTime ===============");
 		// Gestion des dates:
 		LocalDate date = LocalDate.of(2014, 3, 18);
 		int year = date.getYear();
@@ -104,36 +82,53 @@ public class J8 {
 		DateTimeFormatter sdf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		System.out.println(lc.format(sdf));
 
+		System.out.println("=============Exemple Stream ====================");
 		// Exemples d'utilisation de stream
 		List<Integer> vv = Arrays.asList(10, 2, 23, 11);
 		System.out.println("LIST stream " + vv.stream().max(Integer::compare).get());
 		System.out.println("LIST stream " + vv.stream().sorted(Integer::compare).collect(Collectors.toList()));
-		
-		//vecteur initialisé de 1 à 1000
-		long[] vl = LongStream.rangeClosed(1, 1000).toArray();
-		
-		// test constr
-		Supplier<String> sst = String::new;
-		String sfsst = sst.get();
-		JOptionPane.showMessageDialog(null, sfsst);
-		
-		
+
+		System.out.println("======== Steam Initialisation d'un vecteur====");
+		// vecteur initialisé de 1 à 100
+		long[] vl = LongStream.rangeClosed(1, 100).toArray();
+
 		// test compare
 		// Comparator<Object> cpr=Comparator.comparing();
-        // Affiche tous les nbrs pairs de v1
+		// Affiche tous les nbrs pairs de v1
 		List<Integer> v1 = Arrays.asList(1, 3, 5, 6);
 		v1.stream().forEach(System.out::print);
-		
+		System.out.println();
 		List<Integer> v2 = v1.stream().filter(j -> j % 2 == 0).collect(Collectors.toList());
 		System.out.println(v2);
-		
-		//Optionnal
+
+		// Optional ==> permet d'envelopper un objet null ou pas
+		//Très bon lien sur Optional:
+		//https://dzone.com/articles/using-optional-correctly-is-not-optional
 		System.out.println("=============Optional======================");
-		J8 j8=new J8();
-		j8.execute1();
 		
-		
-		
-		
+		// elem est à null ou pas 1 chance sur 2
+		String elem = null;
+		if (Math.random() * 10 < 5)
+			elem = "Didier";
+		// création d'un objet optional en fonction qu'elem soit à null ou pas
+		Optional<String> oS1 = Optional.ofNullable(elem);
+		// exécute un code en fonction que l'elem existe
+		if (oS1.isPresent()) {
+			System.out.println("Elem :" + oS1.get());
+		} else
+			System.out.println("ELem : null");
+		// Version plus courte
+		System.out.println("Elem :" + oS1.orElse("null"));
+
+		// applique une fonction sur l'élément s'il est présent
+		oS1.ifPresent(System.out::println);
+
+		// Enveloppe un objet non null dans un optional
+		Optional<String> oS2 = Optional.of("Hello Optional");
+		// Création d'un optional avec la valeur null
+		// oS2=Optional.empty();
+		// Retourne l'élément s'il est présent sinon génère une exception
+		System.out.println(oS2.orElseThrow(IllegalStateException::new));
+
 	}
 }

@@ -17,12 +17,9 @@ public class JavaChargerPropertiesFromFile {
 		//Charge les properties du fichier
 		try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
 			props.load(br);
-			//Si une clé n'est pas spécifiée, on la rajoute
-			if (!props.containsKey("url"))
-				props.setProperty("url", "c:\\dbs\\");
+			props.putIfAbsent("url", "c:\\dbs\\");
 		} catch (IOException e) {
 			JOptionPane.showMessageDialog(null, e.getMessage());
-
 		}
 		System.out.println(props);
 	}

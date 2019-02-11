@@ -6,7 +6,7 @@ import java.util.Set;
 class Chien {
 	
 
-	private String nom;
+	private final String nom;
 	private Integer age;
 
 	public Chien(String nom, Integer age) {
@@ -14,6 +14,22 @@ class Chien {
 		this.nom = nom;
 		this.age = age;
 	}
+	
+
+	public Integer getAge() {
+		return age;
+	}
+
+
+	public void setAge(Integer age) {
+		this.age = age;
+	}
+
+
+	public String getNom() {
+		return nom;
+	}
+
 
 	@Override
 	public String toString() {
@@ -84,8 +100,7 @@ public class JavaEqualsHashToStringFinalize {
 			Thread.sleep(5000);
 		} catch (InterruptedException e) {
 		}
-		
-		
-		
+		System.out.println("FIN");
+			
 	}
 }
