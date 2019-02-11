@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.LongStream;
@@ -17,6 +18,33 @@ import java.util.stream.Stream;
 import javax.swing.JOptionPane;
 
 public class J8 {
+	//Optional
+	public void execute1() {
+
+	    Optional<String> maybeString = Optional.empty();//Optional.of("foo");
+
+	    String newString = maybeString.map(this::runIfExist).orElse(runIfEmpty());
+
+	    System.out.println(newString);
+
+	}
+
+	private String runIfExist(String str) {
+
+	    System.out.println("only run if optional is filled ");
+
+	    return str;
+
+	}
+
+	private String runIfEmpty() {
+
+	    System.out.println("only run if empty");
+
+	    return "empty";
+
+	}
+	
 	public static void main(String[] s) {
 		// *****************************************************
 		// Exemple d'auto-boxing
@@ -94,10 +122,18 @@ public class J8 {
 		// Comparator<Object> cpr=Comparator.comparing();
         // Affiche tous les nbrs pairs de v1
 		List<Integer> v1 = Arrays.asList(1, 3, 5, 6);
-		Stream<Integer> v2 = v1.stream().filter(j -> j % 2 == 0);
 		v1.stream().forEach(System.out::print);
-
-		List<Integer> vvv = v2.collect(Collectors.toList());
-		System.out.println(vvv);
+		
+		List<Integer> v2 = v1.stream().filter(j -> j % 2 == 0).collect(Collectors.toList());
+		System.out.println(v2);
+		
+		//Optionnal
+		System.out.println("=============Optional======================");
+		J8 j8=new J8();
+		j8.execute1();
+		
+		
+		
+		
 	}
 }

@@ -41,7 +41,7 @@ public class JavaFonctionParam {
 	 * @param v
 	 */
 	public static void f3( List<String> v) {
-		v.add("Quatre");// modifie uniquement la variable locale
+		v.add("Quatre");// modifie l'objet extérieur
 		
 	}
 
