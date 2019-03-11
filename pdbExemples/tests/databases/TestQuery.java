@@ -108,7 +108,7 @@ public class TestQuery {
 
 	@BeforeClass
 	public void beforeClass() throws PersistanceException {
-		ConnexionSingleton.setInfoConnexion(new ConnexionFB_Employee());
+		ConnexionSingleton.setInfoConnexion(new ConnexionFromFile("./ressources/connexion_test.properties", Databases.FIREBIRD));
 		connexion = ConnexionSingleton.getConnexion();
 
 	}
