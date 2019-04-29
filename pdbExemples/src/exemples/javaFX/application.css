@@ -1,0 +1,11 @@
+/* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+#monBorderPane{
+	-fx-background-color:lightcyan; 
+	-fx-border-color:skyblue ;
+	-fx-border-width:3.0
+}
+.toggle-button:selected
+{
+    -fx-background-color: red;
+    -fx-text-fill: white;
+}

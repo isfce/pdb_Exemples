@@ -1,10 +1,5 @@
 package databases;
 
-import org.testng.annotations.Test;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Ignore;
-
-import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNotNull;
 import static org.testng.Assert.assertTrue;
 
@@ -12,6 +7,8 @@ import java.sql.Connection;
 import java.util.Properties;
 
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
 
 public class TestConnexion {
 	@Test
