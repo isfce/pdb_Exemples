@@ -114,7 +114,7 @@ public class PanesExemples extends Application {
 		p.setRight(new Text("Right"));
 		p.setCenter(new Button("Center"));
 		p.setBottom(new Text("Bottom"));
-		p.getChildren().stream().forEach(n -> BorderPane.setAlignment(n, Pos.CENTER));
+		p.getChildren().forEach(n -> BorderPane.setAlignment(n, Pos.CENTER));
 		//p.setStyle("-fx-background-color:azure; -fx-border-color:skyblue ;-fx-border-width:3");
 		return p;
 	}
@@ -197,14 +197,14 @@ public class PanesExemples extends Application {
 		p.setPadding(new Insets(5, 5, 5, 5));
 		p.setVgap(5);
 		p.setHgap(5);
-		p.setPrefWrapLength(85); // Largeur préférée pour 2 colonnes
+		//p.setPrefWrapLength(400); // Largeur préférée pour 2 colonnes
 		p.setStyle("-fx-background-color: skyblue;");
 		// liste d'images img0x.png dans /images/...
 		ImageView pages[] = new ImageView[8];
 		for (int i = 0; i < 8; i++) {
 			pages[i] = new ImageView(new Image(PanesExemples.class.getResourceAsStream("Images/img0" + i + ".png")));
-			p.getChildren().add(pages[i]);
 		}
+		p.getChildren().addAll(pages);
 		p.getChildren().add(new Text("FX==ISFCE==FX"));
 
 		return p;
@@ -215,15 +215,15 @@ public class PanesExemples extends Application {
 		p.setPadding(new Insets(5, 5, 5, 5));
 		p.setVgap(5);
 		p.setHgap(5);
-		p.setPrefColumns(2);// nb de tuiles désirées sur une ligne
+		//p.setPrefColumns(2);// nb de tuiles désirées sur une ligne
 		// p.setPrefRows(2); // nb de tuiles désirées sur une colonne
 		p.setStyle("-fx-background-color: skyblue;");
 		// liste d'images img0x.png dans /images/...
 		ImageView pages[] = new ImageView[8];
 		for (int i = 0; i < 8; i++) {
 			pages[i] = new ImageView(new Image(PanesExemples.class.getResourceAsStream("Images/img0" + i + ".png")));
-			p.getChildren().add(pages[i]);
 		}
+		p.getChildren().addAll(pages);
 		p.getChildren().add(new Text("FX==ISFCE==FX"));
 		return p;
 	}

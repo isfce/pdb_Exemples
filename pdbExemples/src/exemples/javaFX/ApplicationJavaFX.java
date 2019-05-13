@@ -5,10 +5,14 @@ import java.awt.BorderLayout;
 import java.util.Arrays;
 import java.util.Optional;
 
+import javax.swing.plaf.basic.BasicInternalFrameTitlePane.RestoreAction;
+
 import exemples.javaFX.Article.Etape;
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -57,7 +61,7 @@ public class ApplicationJavaFX extends Application {
 		bt1.setOnAction(e -> {
 			//Création d'une Fenêtre
 			Stage s1 = new Stage();
-			s1.initStyle(StageStyle.UTILITY);
+			s1.initStyle(StageStyle.DECORATED);
 			
 			//bouton pour fermer la fenêtre
 			Button close = new Button("Close");
@@ -68,16 +72,16 @@ public class ApplicationJavaFX extends Application {
 			//Création de la scene
 			Scene scene=new Scene(c, 150, 100);
 			//Transparence de la fenêtre
-			s1.setOpacity(0.5);
+			//s1.setOpacity(0.9);
 			//Initialise la "modalité" de la fenêtre
-			s1.initModality(Modality.WINDOW_MODAL);
+			s1.initModality(Modality.APPLICATION_MODAL);
 			//Initialisation classique
 			s1.initOwner(scenePrincipale);
 			s1.setScene(scene);
 			s1.setTitle("Stage de style: " + s1.getStyle()+" modality: "+s1.getModality() );
-			s1.show();
-			//s1.showAndWait();
-			System.out.println("Suite du code après la fenêtre");
+			//s1.show();
+			s1.showAndWait();
+			System.out.println("Suite du code après show ou showAndWait");
 
 		});
 		
@@ -97,6 +101,7 @@ public class ApplicationJavaFX extends Application {
 			al1.setHeaderText(" La pause est finie ?");
 			al1.setContentText("Votre choix ");
 			Optional<ButtonType> result = al1.showAndWait();
+			
 			result.ifPresent(b -> {
 				Alert al2;
 				// en fonction du bouton appuyé, initialise une alerte
@@ -128,13 +133,30 @@ public class ApplicationJavaFX extends Application {
 
 		});
 		bt5 = new Button("Test Input");
-		bt5.setOnAction(e->{
-			TextInputDialog dlg = new TextInputDialog ("VO");
-			dlg.setHeaderText (" Quel est le nom de votre Professeur ?");
-			dlg.setTitle (" Votre Professeur ");
-			dlg.setContentText (" Encodez :");
-			dlg.showAndWait().ifPresent (n-> System . out . println (n));			
-		});
+		
+		bt5.setOnAction(this::brol);
+		
+		
+		
+//		e-> {
+//				Alert al2 = new Alert(AlertType.INFORMATION);
+//				al2.setHeaderText("Voici le nom du bouton du clic");
+//				al2.setContentText(((Button)e.getSource()).getText());
+//				al2.showAndWait();
+//			}
+//		);
+		
+		
+		
+		
+		
+//		bt5.setOnAction(e->{
+//			TextInputDialog dlg = new TextInputDialog ("VO");
+//			dlg.setHeaderText (" Quel est le nom de votre Professeur ?");
+//			dlg.setTitle (" Votre Professeur ");
+//			dlg.setContentText (" Encodez :");
+//			dlg.showAndWait().ifPresent (n-> System . out . println (n));			
+//		});
 		
 		ztEntier=new TextField("0");
 		ztEntier.textProperty().addListener( new ChangeListener<String>() {
@@ -168,6 +190,13 @@ public class ApplicationJavaFX extends Application {
 		scenePrincipale.show();
 	}
 
+	public void brol(ActionEvent e) {
+		Alert al2 = new Alert(AlertType.INFORMATION);
+		al2.setHeaderText("Voici le nom du bouton du clic");
+		al2.setContentText(((Button)e.getSource()).getText());
+		al2.showAndWait();
+	};
+	
 	public static void main(String[] args) {
 		Application.launch(ApplicationJavaFX.class, args);
 
