@@ -107,14 +107,14 @@ public class Place {
 		 */
 		
 		// Permet de tester l'état "invalidation" avant l'appel d'un getter
-		p1.libreProperty().addListener(new InvalidationListener() {
-
-			@Override
-			public void invalidated(Observable o) {
-
-				System.out.println("Place dans l'état invalidé ");
-			}
-		});
+//		p1.libreProperty().addListener(new InvalidationListener() {
+//
+//			@Override
+//			public void invalidated(Observable o) {
+//
+//				System.out.println("Place dans l'état invalidé ");
+//			}
+//		});
 
 		// Ecouteur sur le changement d'état de la place
 		p1.libreProperty().addListener((ev, oldV, newV) -> {

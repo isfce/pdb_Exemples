@@ -20,6 +20,9 @@ public class ExempleProperty {
  // Version Lambda expression
 	i1.addListener((observable,oldValue,newValue)->
 	                 System.out.println(oldValue+"  ==> "+newValue));
+	i1.addListener((o,a,n)->{
+		System.out.println("Oh un changement");
+	});
 			
 	System.out.println(i1.get());
 	for (int i=1;i<10;i++)

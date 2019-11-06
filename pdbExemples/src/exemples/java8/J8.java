@@ -10,6 +10,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.StringJoiner;
 import java.util.stream.Collectors;
 import java.util.stream.LongStream;
 
@@ -129,6 +130,20 @@ public class J8 {
 		// oS2=Optional.empty();
 		// Retourne l'élément s'il est présent sinon génère une exception
 		System.out.println(oS2.orElseThrow(IllegalStateException::new));
-
+		
+		System.out.println("=============String Join ======================");
+		//Exemple 1		
+		 List maListe = Arrays.asList("Bruxelles", "Paris", "NewYork");
+	        String joined1 = String.join("==>", maListe);
+	        System.out.println("Joined String : " + joined1);
+	    //Exemple 2
+	        StringJoiner joined2 = new StringJoiner(";");
+	        joined2.add("Bruxelles");
+	        joined2.add("Paris");
+	        joined2.add("NewYork");
+		System.out.println("Joined String : " + joined2);
+		//Exemple3
+		StringJoiner joined3 = new StringJoiner(";").add("Bruxelles").add("Paris").add("NewYork");
+		System.out.println("Joined String : " + joined3);
 	}
 }
