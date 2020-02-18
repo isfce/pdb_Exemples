@@ -46,6 +46,7 @@ public class JavaCollections {
 		Map<String,String> dict= new HashMap<>();
 		dict.put("VO", "Didier VOO");
 		dict.put("VO", "Didier Van Oudenhove");
+		dict.put("DVO","Didier Van Oudenhove");
 		dict.put("DH", "De Henau MA");
 		System.out.println("Get VO: "+dict.get("VO"));
 		System.out.println("Liste des Clès"+dict.keySet());

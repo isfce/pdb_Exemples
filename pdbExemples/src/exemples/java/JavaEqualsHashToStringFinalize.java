@@ -10,7 +10,6 @@ class Chien {
 	private Integer age;
 
 	public Chien(String nom, Integer age) {
-		super();
 		this.nom = nom;
 		this.age = age;
 	}
@@ -70,7 +69,6 @@ class Chien {
 	@Override
 	protected void finalize() throws Throwable {
 		System.out.println("Destruction du chien "+nom);
-		super.finalize();
 	}
 }
 
@@ -83,6 +81,7 @@ public class JavaEqualsHashToStringFinalize {
 		System.out.println(c1.equals(c2));
 		Set<Chien> ens= new HashSet<>();
 		ens.add(c1);ens.add(c2);
+		System.out.println(" Mon ensemble ne possède qu'un seul Rex!!! car c1.equals(c2)");
 		System.out.println(ens);
 		
 		
@@ -95,11 +94,17 @@ public class JavaEqualsHashToStringFinalize {
 		ens.remove(c1);// supprime de l'ensemble
 		c1=null;// perte de toutes les adresses de c1
 		System.gc();//Force le garbage Collector à travailler
+		if (c2==null) System.out.println(" Plus de Rex C2");
+		else System.out.println("Rex c2 existe encore");
+		c2=null;
+		System.out.println("Je mets c2 à null pour perdre l'autre Rex");
+		System.gc();
 		//Pause de 5s
 		try {
 			Thread.sleep(5000);
 		} catch (InterruptedException e) {
 		}
+		
 		System.out.println("FIN");
 			
 	}

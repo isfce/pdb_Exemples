@@ -43,11 +43,12 @@ public class J8 {
 		// Sol1 avant j8
 		Collections.sort(v);
 		// Sol2 en précisant un comparateur
-		Collections.sort(v, (Integer o1, Integer o2) -> o1.intValue() - o2.intValue());
+		Collections.sort(v, ( Integer o1, Integer o2) -> o1 - o2);
 		// Sol3 réutilise un comparateur de la classe Integer
 		Collections.sort(v, Integer::compare);
 		// Sol4 Directement sur l'objet
 		v.sort(Integer::compare);
+		v.sort((o1,o2)->o1-o2);//ou encore
 
 		// Ecriture du vecteur
 		System.out.println(v);
