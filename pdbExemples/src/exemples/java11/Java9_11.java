@@ -1,18 +1,14 @@
 package exemples.java11;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.Random;
-import java.util.Set;
-import java.util.stream.IntStream;
-import java.util.stream.Stream;
-
 import static java.util.Map.entry;
 
 import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
 
-public class Java9 {
+public class Java9_11 {
 
 	// Interface avec des méthodes privées
 	private interface Test {
@@ -43,7 +39,7 @@ public class Java9 {
 		 * Initialisation d'une "List", "Set", "Map" non modifiable Structure immutable,
 		 * serializable, null value not allow,
 		 */
-		List l1 = List.of("Didier", "Marie-Ange", "Joël", "Luc");
+		List<String> l1 = List.of("Didier", "Marie-Ange", "Joël", "Luc");
 		try {
 			l1.add("Loulou");
 		} catch (Exception e) {
@@ -53,7 +49,7 @@ public class Java9 {
 		/*
 		 * Initialisation d'un ensemble non modifiable
 		 */
-		Set s1 = Set.of("Didier", "Marie-Ange", "Joël", "Luc");
+		Set<String> s1 = Set.of("Didier", "Marie-Ange", "Joël", "Luc");
 		try {
 			s1.add("Loulou");
 		} catch (Exception e) {
@@ -102,6 +98,20 @@ public class Java9 {
 		System.out.println("******** STREAM DropWhile ****************");
 		// élimine les éléments tantque la condition est validée
 		datas.stream().dropWhile(n -> n % 2 == 0).forEach((i) -> System.out.printf("%d , ", i));
-
+		
+		/*
+		 * var uneVariable ( JAVA10 )
+		 * Utilisation de variables qui seront typées lors de l'assignation
+		 */
+		System.out.println();
+		System.out.println("Local Variable type inference (Java10)");
+		int i=25;
+		String nom="Didier";
+		var maVar1=i;
+		maVar1=12;
+		var maVar2=nom;
+		System.out.println(maVar1+"  "+maVar2);
+		
+		
 	}
 }
