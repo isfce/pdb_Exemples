@@ -64,11 +64,11 @@ public class ApplicationJavaFX extends Application {
 			Pane c=new StackPane();
 			c.getChildren().add(close);// ajout du bouton
 			//Création de la scene
-			Scene scene=new Scene(c, 150, 100);
+			Scene scene=new Scene(c, 400, 100);
 			//Transparence de la fenêtre
 			//s1.setOpacity(0.9);
 			//Initialise la "modalité" de la fenêtre
-			s1.initModality(Modality.APPLICATION_MODAL);
+			s1.initModality(Modality.WINDOW_MODAL);
 			//Initialisation classique
 			s1.initOwner(scenePrincipale);
 			s1.setScene(scene);
@@ -176,7 +176,7 @@ public class ApplicationJavaFX extends Application {
 		lstBoutons.setStyle("-fx-background-color: AQUA;");
 		cp.setCenter(txt);
 		// création d'une scène avec son conteneur parent
-		Scene scene = new Scene(cp, 300, 400);
+		Scene scene = new Scene(cp, 500, 400);
 		scenePrincipale.setTitle("Exemple TP01 ");
 		// Ajout de la scène à la Stage
 		scenePrincipale.setScene(scene);
