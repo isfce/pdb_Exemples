@@ -79,6 +79,7 @@ public class JavaEqualsHashToStringFinalize {
 		Chien c1 = new Chien("Rex", 5);
 		Chien c2 = new Chien("Rex", 5);
 		System.out.println(c1.equals(c2));
+		
 		Set<Chien> ens= new HashSet<>();
 		ens.add(c1);ens.add(c2);
 		System.out.println(" Mon ensemble ne possède qu'un seul Rex!!! car c1.equals(c2)");

@@ -44,13 +44,13 @@ public class TestJDBC {
 		// Obtenir une connexion
 		// Définir une Map avec les paires "clé-valeur"
 		Properties props = new Properties();
-		props.setProperty("user", "etudiant");
-		props.setProperty("password", "isfce");
+		props.setProperty("user", "SYSDBA");
+		props.setProperty("password", "masterkey");
 		props.setProperty("encoding", "NONE");
 
 		try (Connection connection = 
-				DriverManager.getConnection("jdbc:firebirdsql:192.168.0.5/3050:emp", props);
-				//DriverManager.getConnection("jdbc:firebirdsql:localhost/3051:employee", props)
+				//DriverManager.getConnection("jdbc:firebirdsql:192.168.0.5/3050:emp", props);
+				DriverManager.getConnection("jdbc:firebirdsql:localhost/3050:employee", props)
 				
 				) {
 			
