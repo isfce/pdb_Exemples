@@ -112,7 +112,7 @@ public class Place {
 //			@Override
 //			public void invalidated(Observable o) {
 //
-//				System.out.println("Place dans l'état invalidé ");
+//				System.out.println("Place dans l'état invalidé "+o);
 //			}
 //		});
 
@@ -123,7 +123,7 @@ public class Place {
 		/* ---------------------------------------------------------- */
 		p1.setLibre(false);// indique que la place est occupée
 		p1.setLibre(true);// indique que la place est libre
-
+		
 		// Exemple de liste observable
 		ListProperty<Place> liste = new SimpleListProperty<>(FXCollections.<Place>observableArrayList());
 		liste.addListener((ListChangeListener.Change<? extends Place> change) -> {
@@ -143,6 +143,6 @@ public class Place {
 		liste.remove(1);
 		liste.get(0).setLibre(false);
 
-	}
+		}
 
 }

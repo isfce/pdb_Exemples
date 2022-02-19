@@ -3,6 +3,7 @@ package exemples.javaFX;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -13,6 +14,16 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class ExempleFx1 extends Application implements EventHandler<ActionEvent> {
+	//Classe interne pour avoir un traiement sur Bt0
+	class Traitement implements EventHandler<ActionEvent>{
+
+		@Override
+		public void handle(ActionEvent e) {
+		affiche("Utilise la classe Traitement: Bouton (" + ((Button) e.getSource()).getText() + ")");		
+		}	
+	}
+	//--------------------------------------------------------
+	private Button bt0;
 	private Button bt1;
 	private Button bt2;
 	private Button bt3;
@@ -34,7 +45,11 @@ public class ExempleFx1 extends Application implements EventHandler<ActionEvent>
 	private void traitementBt3(ActionEvent e) {
 		affiche("Référence de méthode: Bouton (" + ((Button) e.getSource()).getText() + ")");
 	}
-
+	
+	private void traitementBt0(ActionEvent e) {
+		affiche("Référence de méthode: Bouton BT0 XXXXXXXX(");
+	}
+	
 	// Traitement centralisé associée à plusieurs boutons
 	@Override
 	public void handle(ActionEvent event) {
@@ -49,7 +64,7 @@ public class ExempleFx1 extends Application implements EventHandler<ActionEvent>
 			affiche("Clic sur le bouton bt4: Traitement centralisé");
 		} else if (event.getSource() == bt5) {
 			affiche("Clic sur le bouton bt5: Traitement centralisé");
-		}
+		} else affiche(" Un autre Bouton XXX");
 	}
 
 // Demarrage de la vue principale
@@ -66,7 +81,25 @@ public class ExempleFx1 extends Application implements EventHandler<ActionEvent>
 		sp.setFitToWidth(true);
 		cp.setCenter(sp);
 		VBox vb = new VBox();
-
+		
+		// Version Classe Classique
+		bt0=new Button("BT0 appel en utilisant une classe Traitement");
+		//bt0.setOnAction(new Traitement());
+//		bt0.setOnAction(new EventHandler<ActionEvent>() {
+//
+//			@Override
+//			public void handle(ActionEvent e) {
+//				affiche("COUCOU BT0");	
+//			}
+//			
+//		});
+//	bt0.setOnAction(this);
+		
+//		bt0.setOnAction((e)-> {affiche("COUCOU BT0000");});		
+		bt0.setOnAction(this::traitementBt0);	
+		bt0.textProperty().addListener((o,a,n)->{System.out.println("Nom Bouton " + o.getValue());});
+		
+		
 		// Version classe anonyme
 		bt1 = new Button("BT1 appel a une classe anonyme");
 
@@ -75,7 +108,7 @@ public class ExempleFx1 extends Application implements EventHandler<ActionEvent>
 			@Override
 			public void handle(ActionEvent e) {
 				affiche("Classe anonyme " + ((Button) e.getSource()).getText());
-
+				bt0.setText("BOUTON ZERO");
 			}
 		});
 
@@ -100,7 +133,7 @@ public class ExempleFx1 extends Application implements EventHandler<ActionEvent>
 		zt1.setOnKeyReleased(e -> affiche("Touche relachée: " + e.getText() + " code: " + e.getCode()));
 
 		// Ajout des nodes au conteneur vertical
-		vb.getChildren().addAll(bt1, bt2, bt3, bt4, bt5, zt1);
+		vb.getChildren().addAll(bt0,bt1, bt2, bt3, bt4, bt5, zt1);
 
 		// Ajoute la liste des boutons à gauche
 		cp.setLeft(vb);

@@ -1,12 +1,7 @@
 package databases;
 
-import org.testng.annotations.Test;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Ignore;
-
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNotNull;
-import static org.testng.Assert.assertSame;
 import static org.testng.Assert.assertTrue;
 import static org.testng.Assert.fail;
 
@@ -17,10 +12,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Types;
-import java.util.Date;
 import java.util.Properties;
 
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Ignore;
+import org.testng.annotations.Test;
 
 public class TestQuery {
 	String SQL00 = "SELECT * FROM COUNTRY WHERE CURRENCY='Euro'";
@@ -37,26 +34,30 @@ public class TestQuery {
 	@Test
 	public void testStatement() throws SQLException {
 		int cpt = 0;
-		// Création query préparé
+		// Création d'une Statement
 		Statement q00 = connexion.createStatement();
 
-		// Exécution du query
-		boolean res = q00.execute(SQL00);
-		// S'il y a un resultset je l'utilise
-		if (res) {
-			// Récupère le RS
-			ResultSet rs = q00.getResultSet();
+		// Exécution du query qui retourne tjs un ResultSet
+		ResultSet rs = q00.executeQuery(SQL00);
+		while (rs.next())
+			System.out.println(rs.getString("COUNTRY"));
+		q00.close();
 
-			while (rs.next()) {
-				cpt++;
-			}
-			assertEquals(cpt, 6);
-
-			connexion.commit();
-			q00.close();
-
-		} else
-			fail();
+//		// S'il y a un resultset je l'utilise
+//		if (res) {
+//			// Récupère le RS
+//			ResultSet rs = q00.getResultSet();
+//
+//			while (rs.next()) {
+//				cpt++;
+//			}
+//			assertEquals(cpt, 6);
+//
+//			connexion.commit();
+//			q00.close();
+//
+//		} else
+//			fail();
 	}
 
 	@Test
@@ -96,23 +97,34 @@ public class TestQuery {
 		q02.registerOutParameter(2, Types.VARCHAR);
 
 		// exécution du query
-		boolean res = q02.execute();
-		// S'il y a un resultset je l'utilise
-		if (res) {
-			// Récupère le RS
-			ResultSet rs = q02.getResultSet();
-
-			while (rs.next()) {
-				cpt++;
-			}
-			assertEquals(cpt, 3);
-
-			connexion.commit();
-			q02.close();
-
-		} else
+		ResultSet rs = q02.executeQuery();
+		while (rs.next()) {
+			cpt++;
+		}
+		assertEquals(cpt, 3);
+		connexion.commit();
+		q02.close();
+	}
+	
+	//TEST Type Birectionnel et modifiable
+	@Test
+	public void testBiResultSet() {
+		try(Statement q07= connexion.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);){
+			ResultSet rs=q07.executeQuery("SELECT * FROM COUNTRY");				
+			rs.absolute(5);
+			String n=rs.getString(2);
+			//update column
+			rs.updateString(2, n+"_1");
+			rs.updateRow();
+			
+			String r=rs.getString(2);//r is null ????
+			assertEquals(r,n+"_1");
+			
+		} catch (SQLException e) {
 			fail();
-
+		}
+		
+		
 	}
 
 	@Test
@@ -129,19 +141,20 @@ public class TestQuery {
 			ResultSet rs = q00.getResultSet();
 
 			while (rs.next()) {
-				//System.out.println("Champ1: "+rs.getInt(1));
-				//System.out.println("Champ2: "+rs.getTimestamp(2));
+				// System.out.println("Champ1: "+rs.getInt(1));
+				// System.out.println("Champ2: "+rs.getTimestamp(2));
 				assertNotNull(rs.getInt(1));
 				assertNotNull(rs.getTimestamp(2));
 				cpt++;
 			}
 			assertEquals(cpt, 1);
-			
+
 			connexion.rollback();
 			q00.close();
 		} else
 			fail();
 	}
+
 	@Ignore // Ne fonctionne pas avec Firebird
 	@Test
 	public void testInsertGetKey2() throws SQLException {
@@ -150,21 +163,21 @@ public class TestQuery {
 		Statement q00 = connexion.createStatement();
 
 		// Exécution du query
-		boolean res = q00.execute(SQL05, new String[] {"EMP_NO"} );
+		boolean res = q00.execute(SQL05, new String[] { "EMP_NO" });
 		// S'il y a un resultset je l'utilise
 		if (res) {
 			// Récupère le RS
 			ResultSet rs = q00.getGeneratedKeys();
 
 			while (rs.next()) {
-				//System.out.println("Champ1: "+rs.getInt(1));
-				
+				// System.out.println("Champ1: "+rs.getInt(1));
+
 				assertNotNull(rs.getInt(1));
-				
+
 				cpt++;
 			}
 			assertEquals(cpt, 1);
-			
+
 			connexion.rollback();
 			q00.close();
 		} else
@@ -173,8 +186,14 @@ public class TestQuery {
 
 	@BeforeClass
 	public void beforeClass() throws PersistanceException {
-		ConnexionSingleton
-				.setInfoConnexion(new ConnexionFromFile("./ressources/connexion_test.properties", Databases.FIREBIRD));
+		ConnexionSingleton.setInfoConnexion(() -> {
+			Properties prop = new Properties();
+			prop.put("url", Databases.FIREBIRD.buildServeurURL("employee", "localhost"));
+			prop.put("user", "SYSDBA");
+			prop.put("password", "masterkey");
+			prop.put("autoCommit", "false");
+			return prop;
+		});
 		connexion = ConnexionSingleton.getConnexion();
 
 	}

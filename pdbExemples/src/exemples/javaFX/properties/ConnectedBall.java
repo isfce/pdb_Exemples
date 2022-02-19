@@ -49,6 +49,10 @@ class Connection extends Line {
 		startYProperty().bind(startBall.centerYProperty());
 		endXProperty().bind(endBall.centerXProperty());
 		endYProperty().bind(endBall.centerYProperty());
+//		startXProperty().set(startBall.centerXProperty().get());
+//		startYProperty().set(startBall.centerYProperty().get());
+//		endXProperty().set(endBall.centerXProperty().get());
+//		endYProperty().set(endBall.centerYProperty().get());
 	}
 }
 

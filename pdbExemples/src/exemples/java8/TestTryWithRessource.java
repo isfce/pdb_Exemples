@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 public class TestTryWithRessource {
 
 	public static void main(String[] args) {
-		String path = "c:/DBs/Texte.txt";
+		String path = "c:/DBs/TexteEE.txt";
 		try (BufferedReader br = new BufferedReader(new FileReader(path))) {
 			br.lines().forEach(s -> System.out.println(s));
 		} catch (FileNotFoundException e) {

@@ -19,8 +19,6 @@ public class TestJDBC {
 
 	private static final Logger logger = LoggerFactory.getLogger(TestJDBC.class);
 
-	public static Connection connection = null;
-
 	public static void main(String[] args) {
 		Statement query1;
 		// Chargement du Driver
