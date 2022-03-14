@@ -27,7 +27,21 @@ public class Java16_17 {
 			break;
 		default:
 			System.out.println("Pas de chance");
-			break;
+			
+		}
+	}
+
+//enum
+	public enum Operation {
+		CREATE, UPDATE, DELETE, RESEARCH, INSERT
+	};
+
+	private static void traitement2(Operation operation) {
+		switch (operation) {
+		case CREATE, INSERT -> System.out.println("Traitement Ajout");
+		case UPDATE -> System.out.println("Traitement Mise à jour");
+		case DELETE -> System.out.println("Traitement Mise à jour");
+		default -> System.out.println("Traitement autre");
 		}
 	}
 
@@ -44,10 +58,10 @@ public class Java16_17 {
 	private static void loterie2(Integer i) {
 		String res = switch (i) {
 		case 1, 2 -> {
-			yield "Félicitation";
+			yield "Vous avez gagné un bon de 10€";
 		}
 		case 5 -> {
-			yield "Vous avez gagné un bon de 10€";
+			yield "Félicitation, vous gagnez 100€";
 		}
 		default -> "Pas de chance";
 		};
@@ -60,7 +74,8 @@ public class Java16_17 {
 	};
 
 	public enum Forme {
-		PIQUE(Couleur.NOIR), TREFFLE(Couleur.NOIR), CARREAU(Couleur.ROUGE), COEUR(Couleur.ROUGE);
+		PIQUE(Couleur.NOIR), TREFFLE(Couleur.NOIR), 
+		CARREAU(Couleur.ROUGE), COEUR(Couleur.ROUGE);
 
 		private Couleur couleur;
 
@@ -76,7 +91,7 @@ public class Java16_17 {
 
 	public record Carte(Forme forme, int valeur) {
 		Carte next() {
-			return new Carte(forme, valeur+1);
+			return new Carte(forme, valeur + 1);
 		}
 	};
 
@@ -99,12 +114,17 @@ public class Java16_17 {
 		System.out.println(treffle8);
 		System.out.println(treffle8.next());
 		
-		//InstanceOf et typecasting
-		Object o=coeurAs;
+		Couleur coul1=Couleur.ROUGE;
+		Couleur coul2=Couleur.NOIR;
+		System.out.println("COUL "+ coul1.name()+" ordre: "+coul1.ordinal());
+		System.out.println("COUL " + coul2.name() + " ordre: " + coul2.ordinal());
+
+		// InstanceOf et typecasting
+		Object o = coeurAs;
 		if (o instanceof Carte c)
-			System.out.println("o est bien une carte: "+c);
-		
-		//Format Nombre SHORT LONG
+			System.out.println("o est bien une carte: " + c);
+
+		// Format Nombre SHORT LONG
 		NumberFormat fmt = NumberFormat.getCompactNumberInstance(Locale.forLanguageTag("FR"), NumberFormat.Style.SHORT);
 		System.out.println(fmt.format(1000));
 		System.out.println(fmt.format(100000));
@@ -113,16 +133,16 @@ public class Java16_17 {
 		System.out.println(fmt2.format(1000));
 		System.out.println(fmt2.format(100000));
 		System.out.println(fmt.format(1000000));
-		//Format Day periods
+		// Format Day periods
 		var dtf = DateTimeFormatter.ofPattern("B").withLocale(Locale.forLanguageTag("FR"));
 		System.out.println(dtf.format(LocalTime.of(8, 0)));
 		System.out.println(dtf.format(LocalTime.of(13, 0)));
 		System.out.println(dtf.format(LocalTime.of(20, 0)));
 		System.out.println(dtf.format(LocalTime.of(0, 0)));
 		System.out.println(dtf.format(LocalTime.of(1, 0)));
-		//Stream to List
-		Stream<String> sliste=Stream.of("ISFCE","ECOLE","INFORMATIQUE");
-		List<String> liste= sliste.toList();
+		// Stream to List
+		Stream<String> sliste = Stream.of("ISFCE", "ECOLE", "INFORMATIQUE");
+		List<String> liste = sliste.toList();
 		System.out.println(liste);
 	}
 }
