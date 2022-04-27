@@ -26,6 +26,7 @@ public class Java9_11 {
 	}
 
 	public static void main(String[] args) {
+		
 		System.out.println("******** Interface ****************");
 		/* Test de l'interface privée */
 		// instantiation à partir d'une interface
@@ -43,8 +44,15 @@ public class Java9_11 {
 		try {
 			l1.add("Loulou");
 		} catch (Exception e) {
-			System.err.println("LA LISTE EST IMMUTABLE!!");
+			System.err.println("LA LISTE N'EST PAS EXTENSIBLE!!");
 		}
+		
+		try {
+			l1.set(0, "Loulou");
+		} catch (Exception e) {
+			System.err.println("LA LISTE EST MODIFIABLE!!");
+		}
+		
 		System.out.println("******** SET ****************");
 		/*
 		 * Initialisation d'un ensemble non modifiable
@@ -68,6 +76,7 @@ public class Java9_11 {
 		} catch (Exception e) {
 			System.err.println("La map EST IMMUTABLE!!");
 		}
+		
 		// Map Version2:
 		Map<Integer, String> m2 = Map.ofEntries(entry(1, "Didier"), entry(2, "Alain"));
 
@@ -87,7 +96,7 @@ public class Java9_11 {
 		/*
 		 * Stream Exemples pour takeWhile et dropWhile
 		 */
-		
+
 		List<Integer> datas = Arrays.asList(2, 4, 6, 8, 9, 10, 12);
 		System.out.println("Données pour les 2 exemples. Ici la liste doit être triée sinon autre résultat");
 		System.out.println(datas);
@@ -98,20 +107,19 @@ public class Java9_11 {
 		System.out.println("******** STREAM DropWhile ****************");
 		// élimine les éléments tantque la condition est validée
 		datas.stream().dropWhile(n -> n % 2 == 0).forEach((i) -> System.out.printf("%d , ", i));
-		
+
 		/*
-		 * var uneVariable ( JAVA10 )
-		 * Utilisation de variables qui seront typées lors de l'assignation
+		 * var uneVariable ( JAVA10 ) Utilisation de variables qui seront typées lors de
+		 * l'assignation
 		 */
 		System.out.println();
 		System.out.println("Local Variable type inference (Java10)");
-		int i=25;
-		String nom="Didier";
-		var maVar1=i;
-		maVar1=12;
-		var maVar2=nom;
-		System.out.println(maVar1+"  "+maVar2);
-		
-		
+		int i = 25;
+		String nom = "Didier";
+		var maVar1 = i;
+		maVar1 = 12;
+		var maVar2 = nom;
+		System.out.println(maVar1 + "  " + maVar2);
+
 	}
 }

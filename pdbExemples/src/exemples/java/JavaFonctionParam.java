@@ -61,6 +61,7 @@ public class JavaFonctionParam {
 		// Appel une fonction à multiparamètres
 		System.out.println(f1(4, 6, 8, 100));
 		System.out.println(f1(2, 3));
+		System.out.println(f1());
 		// Appel d'une fonction avec copie des paramètres
 		Integer i1 = 1000;
 		Integer i2 = 2000;
