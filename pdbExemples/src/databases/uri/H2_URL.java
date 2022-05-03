@@ -1,4 +1,4 @@
-package databases;
+package databases.uri;
 
 public class H2_URL implements IDbURL {
 	@Override

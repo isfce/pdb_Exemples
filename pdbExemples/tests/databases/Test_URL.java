@@ -6,6 +6,8 @@ import static org.testng.Assert.assertTrue;
 
 import org.testng.annotations.Test;
 
+import databases.uri.Databases;
+
 public class Test_URL {
 	@Test
 	public void testH2() {

@@ -14,9 +14,9 @@ import java.sql.Types;
 import java.time.LocalDate;
 import java.util.Properties;
 
-import databases.ConnexionSingleton;
-import databases.Databases;
-import databases.PersistanceException;
+import databases.connexion.ConnexionSingleton;
+import databases.connexion.PersistanceException;
+import databases.uri.Databases;
 
 public class ExemplesQuery {
 

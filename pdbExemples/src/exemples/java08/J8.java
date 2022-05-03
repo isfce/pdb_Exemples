@@ -1,4 +1,4 @@
-package exemples.java8;
+package exemples.java08;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
