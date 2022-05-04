@@ -15,7 +15,7 @@ public class Java16_17 {
 			    "adresse": "Rue Joseph Buedts, 14"
 			    "commune": "Etterbeek"
 			  }
-			""";// la position permet d'influencer le nbr d'espaces
+              """;// la position permet d'influencer le nbr d'espaces
 
 	private static void loterieOld(Integer i) {
 		switch (i) {
