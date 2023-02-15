@@ -19,6 +19,10 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
 
+import databases.connexion.ConnexionSingleton;
+import databases.connexion.PersistanceException;
+import databases.uri.Databases;
+
 public class TestQuery {
 	String SQL00 = "SELECT * FROM COUNTRY WHERE CURRENCY='Euro'";
 	String SQL01 = "SELECT a.COUNTRY, a.CURRENCY FROM COUNTRY a where a.CURRENCY=?";

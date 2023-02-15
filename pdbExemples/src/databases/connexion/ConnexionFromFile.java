@@ -1,4 +1,4 @@
-package databases;
+package databases.connexion;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -7,6 +7,8 @@ import java.util.Properties;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import databases.uri.Databases;
 
 /**
  * Permet de configurer les paramètres de connexion dans un fichier

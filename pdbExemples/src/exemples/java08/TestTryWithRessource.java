@@ -1,4 +1,4 @@
-package exemples.java8;
+package exemples.java08;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 public class TestTryWithRessource {
 
 	public static void main(String[] args) {
-		String path = "c:/DBs/TexteEE.txt";
+		String path = "c:/DBs/Texte.txt";
 		try (BufferedReader br = new BufferedReader(new FileReader(path))) {
 			br.lines().forEach(s -> System.out.println(s));
 		} catch (FileNotFoundException e) {

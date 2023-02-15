@@ -1,4 +1,4 @@
-package databases;
+package databases.connexion;
 /**
  * Exception générée lors d'un problème de connexion
  * @author Didier

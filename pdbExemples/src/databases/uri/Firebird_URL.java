@@ -6,7 +6,7 @@
  *
  */
 
-package databases;
+package databases.uri;
 
 public class Firebird_URL implements IDbURL {
 

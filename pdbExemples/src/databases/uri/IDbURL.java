@@ -1,4 +1,4 @@
-package databases;
+package databases.uri;
 
 public interface IDbURL {
 	/**

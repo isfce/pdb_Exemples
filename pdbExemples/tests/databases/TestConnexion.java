@@ -10,6 +10,13 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import databases.connexion.ConnexionFB_Employee;
+import databases.connexion.ConnexionFromFile;
+import databases.connexion.ConnexionSingleton;
+import databases.connexion.IConnexionInfos;
+import databases.connexion.PersistanceException;
+import databases.uri.Databases;
+
 public class TestConnexion {
 	@Test
 	//@Ignore

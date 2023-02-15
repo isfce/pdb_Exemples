@@ -70,7 +70,14 @@ public class JavaTypesPrimitifs {
 		for (int i = 0; i < v.length; i++)
 			System.out.print(v[i]);
 		System.out.println();
-
+		
+		//vecteur initialisé
+		int[] v2 = { 1, 2, 3, 5, 8, 13 };
+		for (int elem : v2) {
+			System.out.print(elem+" ");
+		}
+		System.out.println();
+		
 		// Vecteurs 2 Dim
 		int[][] m1 = new int[5][3];
 		System.out.println("Tableau m1");
