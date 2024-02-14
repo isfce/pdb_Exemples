@@ -1,14 +1,12 @@
 package databases;
 
-import static org.testng.Assert.assertNotNull;
-import static org.testng.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.sql.Connection;
 import java.util.Properties;
 
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.Test;
 
 import databases.connexion.ConnexionFB_Employee;
 import databases.connexion.ConnexionFromFile;
@@ -19,7 +17,6 @@ import databases.uri.Databases;
 
 public class TestConnexion {
 	@Test
-	//@Ignore
 	public void testConnexionEmployeEcole() throws PersistanceException {
 		IConnexionInfos info = new ConnexionFB_Employee();
 		Properties map = info.getProperties();
@@ -32,9 +29,9 @@ public class TestConnexion {
 		ConnexionSingleton.setInfoConnexion(info);
 		Connection con = ConnexionSingleton.getConnexion();
 		assertNotNull(con);
-        ConnexionSingleton.liberationConnexion();
+		ConnexionSingleton.liberationConnexion();
 	}
-	
+
 	@Test
 	public void testEmployeeFromFile() throws PersistanceException {
 		IConnexionInfos info = new ConnexionFromFile("./ressources/connexion.properties", Databases.FIREBIRD);
@@ -44,21 +41,13 @@ public class TestConnexion {
 		assertTrue(map.containsKey("user"));
 		assertTrue(map.containsKey("password"));
 		assertTrue(map.containsKey("autoCommit"));
-		
+
 		ConnexionSingleton.setInfoConnexion(info);
 		Connection con = ConnexionSingleton.getConnexion();
 		assertNotNull(con);
-		
-        ConnexionSingleton.liberationConnexion();	
-		
-	}
 
-	@BeforeClass
-	public void beforeClass() {
-	}
+		ConnexionSingleton.liberationConnexion();
 
-	@AfterClass
-	public void afterClass() {
 	}
 
 }

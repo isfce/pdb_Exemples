@@ -20,6 +20,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceDialog;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -55,7 +56,7 @@ public class ApplicationJavaFX extends Application {
 		bt1.setOnAction(e -> {
 			//Création d'une Fenêtre
 			Stage s1 = new Stage();
-			s1.initStyle(StageStyle.DECORATED);
+			s1.initStyle(StageStyle.UNDECORATED);
 			
 			//bouton pour fermer la fenêtre
 			Button close = new Button("Close");
@@ -70,7 +71,7 @@ public class ApplicationJavaFX extends Application {
 			//Initialise la "modalité" de la fenêtre
 			s1.initModality(Modality.WINDOW_MODAL);
 			//Initialisation classique
-			s1.initOwner(scenePrincipale);
+			//s1.initOwner(scenePrincipale);
 			s1.setScene(scene);
 			s1.setTitle("Stage de style: " + s1.getStyle()+" modality: "+s1.getModality() );
 			//s1.show();
@@ -83,7 +84,7 @@ public class ApplicationJavaFX extends Application {
 		bt2 = new Button(" Test Dialog Information");
 		
 		bt2.setOnAction(e -> {
-			Alert al1 = new Alert(AlertType.ERROR);
+			Alert al1 = new Alert(AlertType.INFORMATION);
 			al1.setHeaderText(" Il est l'heure de la pause !!!");
 			al1.showAndWait();
 		});
@@ -128,7 +129,7 @@ public class ApplicationJavaFX extends Application {
 		});
 		bt5 = new Button("Test Input");
 		
-		bt5.setOnAction(this::brol);
+		//bt5.setOnAction(this::brol);
 		
 		
 		
@@ -144,13 +145,13 @@ public class ApplicationJavaFX extends Application {
 		
 		
 		
-//		bt5.setOnAction(e->{
-//			TextInputDialog dlg = new TextInputDialog ("VO");
-//			dlg.setHeaderText (" Quel est le nom de votre Professeur ?");
-//			dlg.setTitle (" Votre Professeur ");
-//			dlg.setContentText (" Encodez :");
-//			dlg.showAndWait().ifPresent (n-> System . out . println (n));			
-//		});
+		bt5.setOnAction(e->{
+			TextInputDialog dlg = new TextInputDialog ("VO");
+			dlg.setHeaderText (" Quel est le nom de votre Professeur ?");
+			dlg.setTitle (" Votre Professeur ");
+			dlg.setContentText (" Encodez :");
+			dlg.showAndWait().ifPresent (n-> System . out . println (n));			
+		});
 		
 		ztEntier=new TextField("0");
 		ztEntier.textProperty().addListener( new ChangeListener<String>() {

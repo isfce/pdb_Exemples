@@ -12,7 +12,7 @@ import javafx.stage.Stage;
 public class ExempleThreadIHM extends Application {
 
 	private Button bt;
-	
+
 	private Label lbl;
 
 	@Override
@@ -20,28 +20,30 @@ public class ExempleThreadIHM extends Application {
 		Pane cp = new StackPane();
 		lbl = new Label(" BIENVENUE AU COURS DE PDB");
 		lbl.setVisible(false);
-				
 
 		bt = new Button(" Appuyer sur le bouton");
+
 		bt.setOnAction(e -> {
-			Thread th = new Thread(()-> {
-				//Cache le bouton et affiche le label
-			    Platform.runLater(()->{bt.setVisible(false);lbl.setVisible(true);});
-			    try {//Attente de 3 s
+			// Cache le bouton et affiche le label
+			bt.setVisible(false);
+			lbl.setVisible(true);
+			new Thread(() -> {
+
+				try {// Attente de 3 s
 					Thread.sleep(3000);
-				} catch (Exception e1) {		
+				} catch (Exception e1) {
 				}
-			  Platform.runLater(()->{
-			    	bt.setVisible(true);lbl.setVisible(false);
-			    });		
-		        });
-			th.setDaemon(true);
-			th.start();
+				Platform.runLater(() -> {
+					bt.setVisible(true);
+					lbl.setVisible(false);
+				});
+
+			}).start();
+
 		});
 
 		cp.getChildren().add(lbl);
 		cp.getChildren().add(bt);
-
 
 		Scene scene = new Scene(cp, 300, 400);
 		scenePrincipale.setTitle("Exemple TP01 ");

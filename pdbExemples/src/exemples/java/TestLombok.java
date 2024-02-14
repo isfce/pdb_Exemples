@@ -17,7 +17,7 @@ public class TestLombok {
 	public TestLombok(int id, String nom) {
 		this.id = id;
 		this.nom = nom;
-		log.info("Une Test est créé!!");
+		log.info("Un Test est créé!!");
 	}
 
 	public static void main(String[] args) {

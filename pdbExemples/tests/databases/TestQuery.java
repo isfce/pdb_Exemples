@@ -1,9 +1,8 @@
 package databases;
 
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertNotNull;
-import static org.testng.Assert.assertTrue;
-import static org.testng.Assert.fail;
+import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -14,10 +13,10 @@ import java.sql.Statement;
 import java.sql.Types;
 import java.util.Properties;
 
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Ignore;
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 import databases.connexion.ConnexionSingleton;
 import databases.connexion.PersistanceException;
@@ -33,11 +32,11 @@ public class TestQuery {
 	String SQL05 = "INSERT INTO EMPLOYEE (FIRST_NAME, LAST_NAME, DEPT_NO, JOB_CODE,JOB_GRADE, JOB_COUNTRY, SALARY)"
 			+ "VALUES ('Test', 'Test','600','VP','2','USA',80000.00)";
 
-	private Connection connexion;
+	private static Connection connexion;
 
 	@Test
 	public void testStatement() throws SQLException {
-		int cpt = 0;
+		
 		// Création d'une Statement
 		Statement q00 = connexion.createStatement();
 
@@ -45,23 +44,7 @@ public class TestQuery {
 		ResultSet rs = q00.executeQuery(SQL00);
 		while (rs.next())
 			System.out.println(rs.getString("COUNTRY"));
-		q00.close();
-
-//		// S'il y a un resultset je l'utilise
-//		if (res) {
-//			// Récupère le RS
-//			ResultSet rs = q00.getResultSet();
-//
-//			while (rs.next()) {
-//				cpt++;
-//			}
-//			assertEquals(cpt, 6);
-//
-//			connexion.commit();
-//			q00.close();
-//
-//		} else
-//			fail();
+		q00.close();		
 	}
 
 	@Test
@@ -159,8 +142,9 @@ public class TestQuery {
 			fail();
 	}
 
-	@Ignore // Ne fonctionne pas avec Firebird
+	
 	@Test
+	@Disabled
 	public void testInsertGetKey2() throws SQLException {
 		int cpt = 0;
 		// Création query préparé
@@ -188,12 +172,13 @@ public class TestQuery {
 			fail();
 	}
 
-	@BeforeClass
-	public void beforeClass() throws PersistanceException {
+	@BeforeAll
+	public static void beforeClass() throws PersistanceException {
 		ConnexionSingleton.setInfoConnexion(() -> {
 			Properties prop = new Properties();
 			prop.put("url", Databases.FIREBIRD.buildServeurURL("employee", "localhost"));
 			prop.put("user", "SYSDBA");
+			prop.put("encoding","NONE");
 			prop.put("password", "masterkey");
 			prop.put("autoCommit", "false");
 			return prop;
@@ -202,8 +187,8 @@ public class TestQuery {
 
 	}
 
-	@AfterClass
-	public void afterClass() {
+	@AfterAll
+	public static void afterClass() {
 		ConnexionSingleton.liberationConnexion();
 	}
 
