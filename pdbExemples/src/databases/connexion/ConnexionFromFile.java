@@ -5,23 +5,21 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Properties;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import databases.uri.Databases;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Permet de configurer les paramètres de connexion dans un fichier
  * xxx.properties avec les clés suivantes user = ... (obligatoire) password =
  * ... (obligatoire) encoding = ... (default None) role = ... (default pas de
- * role) port = .... (default 3050) file = .... (default parking) ip = ...
- * (default localhost) (autoCommit false :default true)
+ * role) port = .... (default 3050) file = .... (default emp) ip = ...
+ * (default localhost) (autoCommit :default true)
  * 
  * @author vo
  *
  */
+@Slf4j
 public class ConnexionFromFile implements IConnexionInfos {
-	private static final Logger logger = LoggerFactory.getLogger(ConnexionFromFile.class);
 	// map de propriétés
 	private Properties props = new Properties();
 
@@ -44,15 +42,19 @@ public class ConnexionFromFile implements IConnexionInfos {
 
 			props.load(br);// charge toutes les proprités du fichier dans la map
 			// construit une URL si elle n'est pas présente
-			props.putIfAbsent("url", sgbd.buildServeurURL(props.getProperty("file", "emp"),
-					props.getProperty("ip", "localhost"),
-					props.containsKey("port") ? Integer.parseInt(props.getProperty("port")) : sgbd.getDefaultPort()
-			));// prend le port par défaut de la BD si la propriété n'est pas présente
+			props.putIfAbsent("url", 
+					sgbd.buildServeurURL(
+							props.getProperty("file", "emp"),//defaut "emp"
+							props.getProperty("ip", "localhost"),//default "localhost"
+							props.containsKey("port") ? 
+								Integer.parseInt(props.getProperty("port")) : sgbd.getDefaultPort()
+								// prend le port par défaut de la BD si la propriété n'est pas présente
+			));
 			props.putIfAbsent("autoCommit", "true");
 			
-			logger.info("url: " + props.getProperty("url"));
+			log.info("url: " + props.getProperty("url"));
 		} catch (IOException e) {
-			logger.error("Problème de chargement du fichier " + filename + " : " + e.getMessage());
+			log.error("Problème de chargement du fichier " + filename + " : " + e.getMessage());
 			throw new PersistanceException("Problème de chargement du fichier " + filename + " : " + e.getMessage());
 
 		}

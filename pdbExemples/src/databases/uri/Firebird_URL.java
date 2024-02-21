@@ -1,9 +1,6 @@
 /**
  * modele.database.Firebird_URL
  *
- * @author Matthieu Schmit 
- * @date 12-05-2017 14:47:38
- *
  */
 
 package databases.uri;

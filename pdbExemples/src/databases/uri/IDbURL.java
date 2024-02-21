@@ -9,7 +9,7 @@ public interface IDbURL {
 	String getUrl();
 
 	/**
-	 * Construiction d'une URL Mémoire
+	 * Construction d'une URL Mémoire
 	 * 
 	 * @param file
 	 * @return une URL Mémoire
