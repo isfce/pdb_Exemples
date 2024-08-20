@@ -14,10 +14,10 @@
 	<classpathentry kind="lib" path="ressources/slf4j-simple-1.7.25.jar"/>
 	<classpathentry kind="lib" path="ressources/slf4j-api-1.7.25.jar"/>
 	<classpathentry kind="lib" path="ressources/controlsfx-8.40.12.jar"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/JavaFX"/>
 	<classpathentry kind="lib" path="ressources/guice-4.2.2.jar"/>
 	<classpathentry kind="lib" path="ressources/lombok.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
 	<classpathentry kind="lib" path="ressources/jaybird-5.0.3.java11.jar"/>
+	<classpathentry kind="con" path="org.eclipse.fx.ide.jdt.core.JAVAFX_CONTAINER"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

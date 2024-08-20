@@ -16,7 +16,7 @@ public class ConnexionFB_Employee implements IConnexionInfos {
 		props.setProperty("user", user);
 		props.setProperty("password", pw);
 		props.setProperty("encoding", "NONE");
-		props.setProperty("url","jdbc:firebirdsql:192.168.0.5/3050:emp");
+		props.setProperty("url","jdbc:firebirdsql:192.168.0.5/3050:employee");
 		props.setProperty("autoCommit", "false");
 		return props;
 	}

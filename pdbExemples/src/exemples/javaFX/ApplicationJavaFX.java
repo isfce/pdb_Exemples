@@ -56,7 +56,7 @@ public class ApplicationJavaFX extends Application {
 		bt1.setOnAction(e -> {
 			//Création d'une Fenêtre
 			Stage s1 = new Stage();
-			s1.initStyle(StageStyle.UNDECORATED);
+			s1.initStyle(StageStyle.UTILITY);
 			
 			//bouton pour fermer la fenêtre
 			Button close = new Button("Close");
@@ -69,7 +69,7 @@ public class ApplicationJavaFX extends Application {
 			//Transparence de la fenêtre
 			//s1.setOpacity(0.9);
 			//Initialise la "modalité" de la fenêtre
-			s1.initModality(Modality.WINDOW_MODAL);
+			s1.initModality(Modality.APPLICATION_MODAL);
 			//Initialisation classique
 			//s1.initOwner(scenePrincipale);
 			s1.setScene(scene);

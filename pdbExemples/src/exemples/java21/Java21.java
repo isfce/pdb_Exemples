@@ -1,5 +1,9 @@
 package exemples.java21;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.util.FormatProcessor;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 
@@ -62,6 +66,30 @@ public class Java21 {
 
 	}
 
+	private static void templateProcesseur() {
+		// Permet de créer des Strings contenant des paramètres \{expression}
+		String nom = "VO";
+		String ecole = "ISFCE";
+		String txt1 = STR."Mon surnom est  \{nom}";
+		System.out.println(txt1);
+		String txt2 = STR."La somme de 2+3 = \{2+3}";
+		System.out.println(txt2);
+		String txt3 = STR."On est le \{DateTimeFormatter.ofPattern("dd/MM/yyyy").format(LocalDate.now())}";
+				System.out.println(txt3);
+		String txt4 = STR."nom: \{nom} " + STR."ISFCE \{LocalDate.now()}";
+				System.out.println(txt4);
+		String txt5 = STR."""
+			{
+				"nom":    "\{nom}",
+				"ecole":   "\{ecole}",
+				"année": "2024"
+			}
+				""";
+		System.out.println(txt5);
+		String txt6 = FormatProcessor.FMT." 2/3 donnera %5.2f\{2/3.0} et on est le %Td\{LocalDate.now()} du mois %tm/%td/%ty\{LocalDate.now()}";
+				System.out.println(txt6);
+	}
+
 	public static void main(String[] args) {
 		// Thread Virtuel
 		virtualThread();
@@ -69,6 +97,8 @@ public class Java21 {
 		sequencedCollections();
 		// Record matching
 		recordMatch();
+		// Text template
+		templateProcesseur();
 		// Enter to close
 //		Scanner scan = new Scanner(System.in);
 //		System.out.println("Entrez une lettre et return");
