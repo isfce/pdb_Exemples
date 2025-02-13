@@ -8,9 +8,6 @@ import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-
 public class TestStream {
 	public static void main(String[] args) {
 		System.out.println("*********** Stream For Each *****************");
@@ -34,13 +31,15 @@ public class TestStream {
 		System.out.println(mapArt.get("STEAK"));
 		System.out.println("*********** Crée une liste observable JavaFX à partir d'une Map *****************");
 		//Crée une liste observable à partir d'une MAP
+	/* //Peut être activé si JavaFX est installé
 		ObservableList<String> listeObs = FXCollections
 				.observableList(mapArt.keySet().stream().sorted().collect(Collectors.toList()));
+				
 		listeObs.stream().forEach(e -> System.out.print(e + " "));
+	*/
 		System.out.println("*********** Stream génère une suite de 5 valeurs entières aléatoires *****************");
 		// Génère une suite de valeur
 		IntStream.generate(new Random()::nextInt).limit(5).forEach(System.out::println);
-
 	}
 }
 //Classe Article pour l'exemple

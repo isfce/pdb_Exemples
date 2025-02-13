@@ -1,9 +1,5 @@
 package exemples.java21;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-import java.util.FormatProcessor;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 
@@ -65,8 +61,11 @@ public class Java21 {
 		});
 
 	}
-
-	private static void templateProcesseur() {
+/**
+ * Cette preview a été supprimée dans JDK 22
+ * 
+ */
+/*	private static void templateProcesseur() {
 		// Permet de créer des Strings contenant des paramètres \{expression}
 		String nom = "VO";
 		String ecole = "ISFCE";
@@ -89,7 +88,7 @@ public class Java21 {
 		String txt6 = FormatProcessor.FMT." 2/3 donnera %5.2f\{2/3.0} et on est le %Td\{LocalDate.now()} du mois %tm/%td/%ty\{LocalDate.now()}";
 				System.out.println(txt6);
 	}
-
+*/
 	public static void main(String[] args) {
 		// Thread Virtuel
 		virtualThread();
@@ -97,8 +96,7 @@ public class Java21 {
 		sequencedCollections();
 		// Record matching
 		recordMatch();
-		// Text template
-		templateProcesseur();
+		
 		// Enter to close
 //		Scanner scan = new Scanner(System.in);
 //		System.out.println("Entrez une lettre et return");
